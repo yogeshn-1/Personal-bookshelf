@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import debounce from "lodash/debounce";
 import BookCard from "./BookCard";
+import { Link } from "react-router-dom";
 
 const SearchPage = () => {
   const [books, setBooks] = useState([]);
@@ -43,6 +44,10 @@ const SearchPage = () => {
 
   return (
     <div className="container">
+      <Link to="/shelf">
+        <button className="routeButton">My Bookshelf</button>
+      </Link>
+      <h2 style={{ textAlign: "center" }}>Search by book name:</h2>
       <input
         id="query"
         type="text"

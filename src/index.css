@@ -22,7 +22,7 @@ code {
 
 input {
   outline: 0;
-  margin: 1rem auto;
+  margin: 0 auto;
   padding: 1rem;
   border: 0;
   border-radius: 5px;
@@ -34,34 +34,48 @@ input {
   margin: 1rem auto;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 5px;
 }
 #bookContainer {
+  margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 .bookCard {
-  width: 300px;
-  height: 100px;
   background-color: azure;
-  padding: 5px;
   border-radius: 5px;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 2rem;
+  height: 250px;
+  padding: 7px;
+  width: 270px;
 }
-.addButton {
-  padding: 5px 1rem;
-  outline: 0;
+.bookCard div {
+  display: flex;
+}
+
+button {
   border: 0;
-  background-color: #2fd59b;
-  width: fit-content;
-  align-self: center;
-  vertical-align: bottom;
+  border-radius: 5px;
   cursor: pointer;
+  outline: 0;
+  padding: 5px 1rem;
+  width: fit-content;
+}
+
+.addButton {
+  align-self: center;
+  background-color: #2fd59b;
   &:hover {
     background-color: #0ee987;
   }
+}
+
+.routeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
