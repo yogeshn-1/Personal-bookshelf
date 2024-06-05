@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import debounce from "lodash/debounce";
+import debounce from "lodash";
 import BookCard from "./BookCard";
 import { Link } from "react-router-dom";
 import Loader from "../Loader.svg";
@@ -11,14 +11,16 @@ const SearchPage = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchBook = useCallback(
-    debounce((book) => {
-      if (book.length === 0) {
+    debounce((bookQuery) => {
+      if (bookQuery.length === 0) {
         setBooks([]);
         setLoading(false);
         return;
       }
       const apiQuery =
-        "https://openlibrary.org/search.json?q=" + book + "&limit=10&page=1";
+        "https://openlibrary.org/search.json?q=" +
+        bookQuery +
+        "&limit=10&page=1";
       setLoading(true);
       setError("");
       fetch(apiQuery)
@@ -37,7 +39,6 @@ const SearchPage = () => {
 
   useEffect(() => {
     fetchBook(query);
-    console.log(books);
     return () => {};
   }, [query, fetchBook]);
 
@@ -60,7 +61,7 @@ const SearchPage = () => {
         onChange={handleChange}
       />
       <div className="loadOrError">
-        {loading && <img src={Loader} />}
+        {loading && <img src={Loader} alt="" />}
         {error && <p>{error}</p>}
         {!error && !loading && query.length !== 0 && books.length === 0 && (
           <p>No book found with searched parameter</p>

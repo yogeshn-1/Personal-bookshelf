@@ -2,9 +2,8 @@ import React, { useContext } from "react";
 import { ShelfContext } from "../App";
 
 const BookCard = ({ book, isBookInShelf = false }) => {
-  const { shelfBooks, setShelfBooks } = useContext(ShelfContext);
+  const { setShelfBooks } = useContext(ShelfContext);
   const addToshelf = (e) => {
-    console.log("shelfbook before : ", shelfBooks);
     setShelfBooks((prev) => {
       const updatedShelfBooks = [...prev, book];
       localStorage.setItem("shelfBooks", JSON.stringify(updatedShelfBooks));

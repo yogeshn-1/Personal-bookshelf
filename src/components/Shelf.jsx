@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 const Shelf = () => {
   const shelfBooks = JSON.parse(localStorage.getItem("shelfBooks"));
-  console.log(shelfBooks);
-  console.log(shelfBooks.length);
   return (
     <div className="container">
       <Link to="/">
