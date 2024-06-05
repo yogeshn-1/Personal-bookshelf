@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import debounce from "lodash/debounce";
 import BookCard from "./BookCard";
 import { Link } from "react-router-dom";
+import Loader from "../Loader.svg";
 
 const SearchPage = () => {
   const [books, setBooks] = useState([]);
@@ -19,6 +20,7 @@ const SearchPage = () => {
       const apiQuery =
         "https://openlibrary.org/search.json?q=" + book + "&limit=10&page=1";
       setLoading(true);
+      setError("");
       fetch(apiQuery)
         .then((res) => res.json())
         .then((res) => {
@@ -36,6 +38,7 @@ const SearchPage = () => {
   useEffect(() => {
     fetchBook(query);
     console.log(books);
+    return () => {};
   }, [query, fetchBook]);
 
   const handleChange = (e) => {
@@ -54,10 +57,16 @@ const SearchPage = () => {
         placeholder="Enter book name to search"
         onChange={handleChange}
       />
-      <section id="bookContainer">
-        {loading && <p>Loading...</p>}
+      <div className="loadOrError">
+        {loading && <img src={Loader} />}
         {error && <p>{error}</p>}
+        {!error && !loading && query.length !== 0 && books.length === 0 && (
+          <p>No book found with given search parameter</p>
+        )}
+      </div>
+      <section id="bookContainer">
         {!loading &&
+          !error &&
           books.length > 0 &&
           books.map((book, index) => <BookCard key={index} book={book} />)}
       </section>

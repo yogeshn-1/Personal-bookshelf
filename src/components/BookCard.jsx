@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ShelfContext } from "../App";
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, isBookInShelf = false }) => {
   const { shelfBooks, setShelfBooks } = useContext(ShelfContext);
   const addToshelf = (e) => {
     console.log("shelfbook before : ", shelfBooks);
@@ -22,9 +22,11 @@ const BookCard = ({ book }) => {
         <b>Edition Count: </b>
         <p style={{ margin: "0 5px" }}>{book.edition_count}</p>
       </div>
-      <button className="addButton" onClick={addToshelf}>
-        Add to shelf
-      </button>
+      {!isBookInShelf && (
+        <button className="addButton" onClick={addToshelf}>
+          Add to shelf
+        </button>
+      )}
     </article>
   );
 };

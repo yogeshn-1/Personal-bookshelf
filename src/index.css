@@ -29,6 +29,7 @@ input {
   width: 80%;
   align-self: center;
 }
+
 .container {
   max-width: 880px;
   margin: 1rem auto;
@@ -36,12 +37,14 @@ input {
   flex-direction: column;
   gap: 5px;
 }
+
 #bookContainer {
   margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
+
 .bookCard {
   background-color: azure;
   border-radius: 5px;
@@ -49,7 +52,7 @@ input {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 250px;
+  height: 220px;
   padding: 7px;
   width: 270px;
 }
@@ -65,7 +68,6 @@ button {
   padding: 5px 1rem;
   width: fit-content;
 }
-
 .addButton {
   align-self: center;
   background-color: #2fd59b;
@@ -73,9 +75,19 @@ button {
     background-color: #0ee987;
   }
 }
-
 .routeButton {
   position: absolute;
   top: 1rem;
   right: 1rem;
+}
+
+.loadOrError {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+  margin: 1rem auto;
+  color: #e22626;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
 }
