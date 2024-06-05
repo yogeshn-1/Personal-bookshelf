@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
-import debounce from "lodash";
+import React, { useEffect, useMemo, useState } from "react";
+import debounce from "lodash/debounce";
 import BookCard from "./BookCard";
 import { Link } from "react-router-dom";
 import Loader from "../Loader.svg";
@@ -10,30 +10,31 @@ const SearchPage = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const fetchBook = useCallback(
-    debounce((bookQuery) => {
-      if (bookQuery.length === 0) {
-        setBooks([]);
-        setLoading(false);
-        return;
-      }
-      const apiQuery =
-        "https://openlibrary.org/search.json?q=" +
-        bookQuery +
-        "&limit=10&page=1";
-      setLoading(true);
-      setError("");
-      fetch(apiQuery)
-        .then((res) => res.json())
-        .then((res) => {
-          setBooks(res.docs);
+  const fetchBook = useMemo(
+    () =>
+      debounce((bookQuery) => {
+        if (bookQuery.length === 0) {
+          setBooks([]);
           setLoading(false);
-        })
-        .catch((err) => {
-          setError(err.message);
-          setLoading(false);
-        });
-    }, 300),
+          return;
+        }
+        const apiQuery =
+          "https://openlibrary.org/search.json?q=" +
+          bookQuery +
+          "&limit=10&page=1";
+        setLoading(true);
+        setError("");
+        fetch(apiQuery)
+          .then((res) => res.json())
+          .then((res) => {
+            setBooks(res.docs);
+            setLoading(false);
+          })
+          .catch((err) => {
+            setError(err.message);
+            setLoading(false);
+          });
+      }, 300),
     []
   );
 
