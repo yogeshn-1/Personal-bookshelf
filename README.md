@@ -10,4 +10,4 @@
 
 # Deployment
 
-Project is live [here] (https://personal-shelf.netlify.app/)
+Project is live [here](https://personal-shelf.netlify.app/)
