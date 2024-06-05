@@ -48,7 +48,9 @@ const SearchPage = () => {
   return (
     <div className="container">
       <Link to="/shelf">
-        <button className="routeButton">My Bookshelf</button>
+        <button className="routeButton" id="shelf">
+          My Bookshelf
+        </button>
       </Link>
       <h2 style={{ textAlign: "center" }}>Search by book name:</h2>
       <input
@@ -61,7 +63,7 @@ const SearchPage = () => {
         {loading && <img src={Loader} />}
         {error && <p>{error}</p>}
         {!error && !loading && query.length !== 0 && books.length === 0 && (
-          <p>No book found with given search parameter</p>
+          <p>No book found with searched parameter</p>
         )}
       </div>
       <section id="bookContainer">
